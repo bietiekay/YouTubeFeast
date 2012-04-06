@@ -1,0 +1,18 @@
+YouTubeFeast - a semi-automatic YouTube video downloading tool
+(C) Daniel Kirstenpfad 2012 - http://www.technology-ninja.com
+
+For several years now I've subscribed YouTube channels and I keep adding subscriptions
+over the years. For about one year now I am using ByTubeD - a firefox add-on - to 
+download new videos that appear in my subscribed YouTube channels.
+
+Now sadly this is a completly manual process. I have to go to the channel homepage, I
+have to select what I want to download and sometimes I need to look after the download
+process because when it's taking too long (like when I initially download a whole 400
+video batch of a new channel I've subscribed...) the video URLs time-out and are not
+useable anymore.
+
+Now the solution is to write a small programm which automatically downloads once every
+while all the new videos in configured YouTube channels.
+
+
+
