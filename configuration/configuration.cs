@@ -27,35 +27,39 @@ namespace YouTubeFeast
 
                 foreach(String LineElement in ConfigFileContent)
                 {
-                   /* 
-                    String[] TokenizedLine = LineElement.Split(new char[1] { ' ' });
                     LineNumber++;
-
+					
+					// ignore anything that starts with # and read everything else
                     if (!LineElement.StartsWith("#"))
-                    { 
-
-                        ScriptingActorElement NewElement = new ScriptingActorElement();
-
-                        if (TokenizedLine.Length == 4)
-                        { 
-                            NewElement.SensorToWatchName = TokenizedLine[0];
-                            NewElement.SensorValue = Convert.ToDouble(TokenizedLine[1]);
-                            NewElement.ActorToSwitchName = TokenizedLine[2];
-                            if (TokenizedLine[3].ToUpper() == "ON")
-                                NewElement.ActionToRunName = actor_status.On;
-                            else
-                                if (TokenizedLine[3].ToUpper() == "OFF")
-                                    NewElement.ActionToRunName = actor_status.Off;
-                                else
-                                    if (TokenizedLine[3].ToUpper() == "ONOFF")
-                                        NewElement.ActionToRunName = actor_status.OnOff;
-
-                            ScriptingActorActions.Add(NewElement);
-                        }
-                        else
-                            throw (new Exception("Scripting Actor Configuration File - Error in line "+LineNumber));
+                    {
+						String[] TokenizedLine = LineElement.Split(new char[1] { '\t' });
+						ChannelDownloadJob NewJob = new ChannelDownloadJob();
+						
+						if (TokenizedLine.Length == 3)
+						{
+							NewJob.ChannelURL = TokenizedLine[0];
+							NewJob.ChannelDownloadDirectory = TokenizedLine[2];
+							switch (TokenizedLine[1].ToUpper())
+							{
+							    case "360P": 
+							        NewJob.DownloadVideoFormat = VideoFormat.Standard360;
+							        break;
+							    case "720P":
+							        NewJob.DownloadVideoFormat = VideoFormat.HighDefinition720;
+							        break;
+								case "1080P":
+									NewJob.DownloadVideoFormat = VideoFormat.HighDefinition1080;
+									break;
+							    default:
+							        NewJob.DownloadVideoFormat = VideoFormat.Standard360;
+							        break;
+							}
+							DownloadJobs.Add(NewJob);
+							Console.WriteLine("Added a new Job ("+NewJob.ChannelURL+")");
+						}
+						else
+							throw (new Exception("configuration file - error in line "+LineNumber));
                     }
-                    */
                 }
             }
             else
