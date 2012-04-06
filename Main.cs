@@ -1,4 +1,5 @@
 using System;
+using System.Threading;
 
 namespace YouTubeFeast
 {
@@ -12,6 +13,14 @@ namespace YouTubeFeast
 			
 			YouTubeFeastConfiguration.ReadConfiguration("YouTubeFeast.config");
 			
+			Console.WriteLine();
+			Console.WriteLine("to quit please use control-c.");
+			Console.WriteLine();
+			
+			while (true)
+			{
+				Thread.Sleep(1000);
+			}
 		}
 	}
 }

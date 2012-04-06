@@ -11,6 +11,8 @@ namespace YouTubeFeast
         public String ChannelURL;
 		public String ChannelDownloadDirectory;
 		public VideoFormat DownloadVideoFormat;
+		public Int64 Interval;
+		public DateTime LastDownload;
     }
 
     public static class YouTubeFeastConfiguration
@@ -35,7 +37,7 @@ namespace YouTubeFeast
 						String[] TokenizedLine = LineElement.Split(new char[1] { '\t' });
 						ChannelDownloadJob NewJob = new ChannelDownloadJob();
 						
-						if (TokenizedLine.Length == 3)
+						if (TokenizedLine.Length == 4)
 						{
 							NewJob.ChannelURL = TokenizedLine[0];
 							NewJob.ChannelDownloadDirectory = TokenizedLine[2];
@@ -54,6 +56,8 @@ namespace YouTubeFeast
 							        NewJob.DownloadVideoFormat = VideoFormat.Standard360;
 							        break;
 							}
+							NewJob.Interval = Convert.ToInt32(TokenizedLine[3])*60*60*1000;
+							
 							DownloadJobs.Add(NewJob);
 							Console.WriteLine("Added a new Job ("+NewJob.ChannelURL+")");
 						}
