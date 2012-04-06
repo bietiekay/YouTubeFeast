@@ -54,5 +54,7 @@
       <Gettext-ScanForTranslations>false</Gettext-ScanForTranslations>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="license" />
+    <None Include="readme" />
   </ItemGroup>
 </Project>
