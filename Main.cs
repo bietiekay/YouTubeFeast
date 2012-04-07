@@ -15,7 +15,7 @@ namespace YouTubeFeast
 			Console.WriteLine("(C) Daniel Kirstenpfad 2012 - http://www.technology-ninja.com");
 			Console.WriteLine();
 			
-			YouTubeFeastConfiguration.ReadConfiguration("YouTubeFeast.config");
+			YouTubeFeastConfiguration.ReadConfiguration("YouTubeFeast.configuration");
 			
 			Console.WriteLine();
 			Console.WriteLine("to quit please use control-c.");

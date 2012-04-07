@@ -52,11 +52,11 @@
     <Folder Include="download\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="YouTubeFeast.config">
+    <None Include="license" />
+    <None Include="readme" />
+    <None Include="YouTubeFeast.configuration">
       <Gettext-ScanForTranslations>false</Gettext-ScanForTranslations>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="license" />
-    <None Include="readme" />
   </ItemGroup>
 </Project>

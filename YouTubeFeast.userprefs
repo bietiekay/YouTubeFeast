@@ -1,11 +1,9 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="lib/YouTubeExtractor/YoutubeExtractor/ExampleApplication/Program.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="YouTubeFeast.configuration">
     <Files>
-      <File FileName="Main.cs" Line="60" Column="109" />
-      <File FileName="download/download.cs" Line="57" Column="13" />
-      <File FileName="configuration/configuration.cs" Line="14" Column="15" />
-      <File FileName="lib/YouTubeExtractor/YoutubeExtractor/ExampleApplication/Program.cs" Line="80" Column="31" />
+      <File FileName="Main.cs" Line="18" Column="75" />
+      <File FileName="YouTubeFeast.configuration" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
