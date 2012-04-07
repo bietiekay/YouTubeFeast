@@ -47,20 +47,33 @@ namespace YouTubeFeast
 							{
 								// get all the available video formats for this one...
 								IEnumerable<VideoInfo> videoInfos = DownloadUrlResolver.GetDownloadUrls(url);
-								VideoInfo video = videoInfos.First(info => info.VideoFormat == job.DownloadVideoFormat);
 								
-								String filename = Path.Combine(job.ChannelDownloadDirectory, video.Title + video.VideoExtension);
+								VideoInfo video = null;
+                                try
+                                {
+								    video = videoInfos.First(info => info.VideoFormat == job.DownloadVideoFormat);
+                                }
+                                catch(Exception)
+                                {
+                                    Console.WriteLine("Error: Video with the desired resolution is not available.");
+                                    //video = videoInfos.First(info => info.VideoFormat == VideoFormat.Standard360);
+                                }
 								
-								if (File.Exists(filename))
+								if (video != null)
 								{
-									Console.WriteLine("File: "+filename+" already exists - we stop this channel job now.");
-									break;
+									String filename = Path.Combine(job.ChannelDownloadDirectory, video.Title + video.VideoExtension);
+									
+									if (File.Exists(filename))
+									{
+										Console.WriteLine("File: "+filename+" already exists - we stop this channel job now.");
+										break;
+									}
+									else
+										Console.WriteLine("Downloading: "+filename);
+									var videoDownloader = new VideoDownloader(video, filename);
+									//videoDownloader.ProgressChanged += (sender, args) => Console.WriteLine(args.ProgressPercentage);
+									videoDownloader.Execute();
 								}
-								else
-									Console.WriteLine("Downloading: "+filename);
-								var videoDownloader = new VideoDownloader(video, filename);
-								//videoDownloader.ProgressChanged += (sender, args) => Console.WriteLine(args.ProgressPercentage);
-								 videoDownloader.Execute();
 							}
 						}
 					}	
