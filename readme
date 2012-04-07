@@ -7,5 +7,5 @@ Now sadly this is a completly manual process. I have to go to the channel homepa
 
 Now the solution is to write a small programm which automatically downloads once every while all the new videos in configured YouTube channels.
 
-
+Get the current source code here: https://github.com/bietiekay/YouTubeFeast
 
