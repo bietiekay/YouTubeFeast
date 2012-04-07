@@ -6,7 +6,7 @@ using YoutubeExtractor;
 
 namespace YouTubeFeast
 {
-    public class ChannelDownloadJob
+    public class ChannelJob
     {
         public String ChannelURL;
 		public String ChannelDownloadDirectory;
@@ -17,7 +17,7 @@ namespace YouTubeFeast
 
     public static class YouTubeFeastConfiguration
     {
-        public static List<ChannelDownloadJob> DownloadJobs = new List<ChannelDownloadJob>();
+        public static List<ChannelJob> DownloadJobs = new List<ChannelJob>();
 
         public static void ReadConfiguration(String Configfilename)
         {
@@ -35,7 +35,7 @@ namespace YouTubeFeast
                     if (!LineElement.StartsWith("#"))
                     {
 						String[] TokenizedLine = LineElement.Split(new char[1] { '\t' });
-						ChannelDownloadJob NewJob = new ChannelDownloadJob();
+						ChannelJob NewJob = new ChannelJob();
 						
 						if (TokenizedLine.Length == 4)
 						{

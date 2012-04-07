@@ -1,5 +1,6 @@
 using System;
 using System.Threading;
+using System.Collections.Generic;
 
 namespace YouTubeFeast
 {
@@ -19,7 +20,14 @@ namespace YouTubeFeast
 			
 			while (true)
 			{
-				Thread.Sleep(1000);
+				// we have to decide if there is a job we need to work on
+				
+				foreach(ChannelJob job in YouTubeFeastConfiguration.DownloadJobs)
+				{
+					List<String> DownloadURLs = YoutubeDownload.GenerateDownloadURLsFromChannel(job.ChannelURL);
+				}
+				
+				Thread.Sleep(10000);
 			}
 		}
 	}

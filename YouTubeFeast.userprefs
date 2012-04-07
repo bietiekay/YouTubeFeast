@@ -1,8 +1,11 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Main.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="configuration/configuration.cs">
     <Files>
-      <File FileName="Main.cs" Line="9" Column="45" />
+      <File FileName="Main.cs" Line="19" Column="4" />
+      <File FileName="configuration/configuration.cs" Line="21" Column="3" />
+      <File FileName="YouTubeFeast.config" Line="12" Column="59" />
+      <File FileName="DownloadThread.cs" Line="13" Column="4" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -38,6 +38,7 @@
     <Compile Include="Main.cs" />
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="configuration\configuration.cs" />
+    <Compile Include="download\download.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -48,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="configuration\" />
+    <Folder Include="download\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="YouTubeFeast.config">
