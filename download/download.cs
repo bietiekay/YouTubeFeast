@@ -7,6 +7,7 @@ namespace YouTubeFeast
 {
 	public static class YoutubeDownload
 	{
+		#region Generate Download URLs from a Channel URL
 		public static List<String> GenerateDownloadURLsFromChannel(String ChannelURL)
 		{
 			WebClient myWebClient = new WebClient();
@@ -53,6 +54,7 @@ namespace YouTubeFeast
 			//Console.WriteLine("I have found a total of "+Output.Count+" movies in that channel");
 			return Output;
 		}
+		#endregion
 	}
 }
 

@@ -11,7 +11,7 @@ namespace YouTubeFeast
         public String ChannelURL;
 		public String ChannelDownloadDirectory;
 		public VideoFormat DownloadVideoFormat;
-		public Int64 Interval;
+		public Int32 Interval;
 		public DateTime LastDownload;
     }
 
@@ -56,7 +56,7 @@ namespace YouTubeFeast
 							        NewJob.DownloadVideoFormat = VideoFormat.Standard360;
 							        break;
 							}
-							NewJob.Interval = Convert.ToInt32(TokenizedLine[3])*60*60*1000;
+							NewJob.Interval = Convert.ToInt32(TokenizedLine[3])/**60*60*1000*/;
 							
 							DownloadJobs.Add(NewJob);
 							Console.WriteLine("Added a new Job ("+NewJob.ChannelURL+")");
