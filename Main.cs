@@ -67,15 +67,17 @@ namespace YouTubeFeast
 									if (File.Exists(filename))
 									{
 										//Console.WriteLine("File: "+filename+" already exists - we stop this channel job now.");
-										Console.WriteLine("\t\t Notice: We are finished with this channel.");
+										Console.WriteLine("\t\tNotice: We are finished with this channel.");
 										break;
 									}
 									else
 									{
-										Console.WriteLine("\t\tDownloading: "+ShortenString.LimitCharacters(filename,40));
+                                        Console.Write("\t\tDownloading: " + ShortenString.LimitCharacters(video.Title, 40) + "...");
 										var videoDownloader = new VideoDownloader(video, filename);
+
 										//videoDownloader.ProgressChanged += (sender, args) => Console.WriteLine(args.ProgressPercentage);
 										videoDownloader.Execute();
+                                        Console.WriteLine("done");
 									}
 								}
 							}
