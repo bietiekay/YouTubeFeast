@@ -79,8 +79,15 @@ namespace YouTubeFeast
                                         Int32 top = Console.CursorTop;
 
 										videoDownloader.ProgressChanged += (sender, args) => DisplayProgress(left,top,args.ProgressPercentage);
-										
-										videoDownloader.Execute();
+										try
+                                        {
+										    videoDownloader.Execute();
+                                        }
+                                        catch(Exception e)
+                                        {
+                                            Console.WriteLine("\t\tError: "+ShortenString.LimitCharacters(e.Message,40));
+                                            //video = videoInfos.First(info => info.VideoFormat == VideoFormat.Standard360);
+                                        }
                                         Console.WriteLine("done    ");
 									}
 								}
