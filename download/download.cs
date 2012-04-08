@@ -48,7 +48,6 @@ namespace YouTubeFeast
 					download = download.Remove(0,Postpend.Length); // remove the found one from the lot
 						
 					Output.Add(PrependURL+Postpend);
-					
 				}
 			}
 			//Console.WriteLine("I have found a total of "+Output.Count+" movies in that channel");

@@ -69,10 +69,12 @@ namespace YouTubeFeast
 										break;
 									}
 									else
+									{
 										Console.WriteLine("Downloading: "+filename);
-									var videoDownloader = new VideoDownloader(video, filename);
-									//videoDownloader.ProgressChanged += (sender, args) => Console.WriteLine(args.ProgressPercentage);
-									videoDownloader.Execute();
+										var videoDownloader = new VideoDownloader(video, filename);
+										//videoDownloader.ProgressChanged += (sender, args) => Console.WriteLine(args.ProgressPercentage);
+										videoDownloader.Execute();
+									}
 								}
 							}
 						}
