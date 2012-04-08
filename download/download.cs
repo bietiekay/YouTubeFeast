@@ -11,7 +11,7 @@ namespace YouTubeFeast
 		public static List<String> GenerateDownloadURLsFromChannel(String ChannelURL)
 		{
 			WebClient myWebClient = new WebClient();
-			Console.WriteLine("Downloading: " + ChannelURL);                        
+			//Console.WriteLine("Downloading: " + ChannelURL);                        
 			// Download the Web resource and save it into a data buffer.
 			byte[] myDataBuffer;
 			try
@@ -20,7 +20,7 @@ namespace YouTubeFeast
 			}
 			catch ( Exception e)
 			{
-				Console.WriteLine("Error: "+e.Message);
+				Console.WriteLine("\t\tError: "+ShortenString.LimitCharacters(e.Message,40));
 				return new List<String>();
 			}
 			

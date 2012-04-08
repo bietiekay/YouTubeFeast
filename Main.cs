@@ -31,6 +31,7 @@ namespace YouTubeFeast
 					TimeSpan theInterval = new TimeSpan(job.Interval,0,0);
 					if ( SinceLastRun  >= theInterval )
 					{
+						Console.WriteLine("Updating: "+job.ChannelURL);
 						// we should download something... or at least look for new stuff
 						List<String> DownloadURLs = YoutubeDownload.GenerateDownloadURLsFromChannel(job.ChannelURL);
 						job.LastDownload = DateTime.Now;
@@ -55,7 +56,7 @@ namespace YouTubeFeast
                                 }
                                 catch(Exception)
                                 {
-                                    Console.WriteLine("Error: Video with the desired resolution is not available.");
+                                    Console.WriteLine("\t\tError: Video with the desired resolution is not available.");
                                     //video = videoInfos.First(info => info.VideoFormat == VideoFormat.Standard360);
                                 }
 								
@@ -65,12 +66,13 @@ namespace YouTubeFeast
 									
 									if (File.Exists(filename))
 									{
-										Console.WriteLine("File: "+filename+" already exists - we stop this channel job now.");
+										//Console.WriteLine("File: "+filename+" already exists - we stop this channel job now.");
+										Console.WriteLine("\t\t Notice: We are finished with this channel.");
 										break;
 									}
 									else
 									{
-										Console.WriteLine("Downloading: "+filename);
+										Console.WriteLine("\t\tDownloading: "+ShortenString.LimitCharacters(filename,40));
 										var videoDownloader = new VideoDownloader(video, filename);
 										//videoDownloader.ProgressChanged += (sender, args) => Console.WriteLine(args.ProgressPercentage);
 										videoDownloader.Execute();
@@ -81,7 +83,7 @@ namespace YouTubeFeast
 					}	
 				}
 				
-				Thread.Sleep(10000);
+				Thread.Sleep(60000);
 			}
 		}
 	}
