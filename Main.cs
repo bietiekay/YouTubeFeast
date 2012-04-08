@@ -9,7 +9,7 @@ namespace YouTubeFeast
 {
 	class MainClass
 	{
-		public static void Main (string[] args)
+		public static void Main (string[] args2)
 		{
 			Console.WriteLine("YouTubeFeast version "+System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString());
 			Console.WriteLine("(C) Daniel Kirstenpfad 2012 - http://www.technology-ninja.com");
@@ -75,9 +75,10 @@ namespace YouTubeFeast
                                         Console.Write("\t\tDownloading: " + ShortenString.LimitCharacters(video.Title, 40) + "...");
 										var videoDownloader = new VideoDownloader(video, filename);
 
-										//videoDownloader.ProgressChanged += (sender, args) => Console.WriteLine(args.ProgressPercentage);
+										videoDownloader.ProgressChanged += (sender, args) => DisplayProgress(args.ProgressPercentage);
+										
 										videoDownloader.Execute();
-                                        Console.WriteLine("done");
+                                        Console.WriteLine("done    ");
 									}
 								}
 							}
@@ -87,6 +88,15 @@ namespace YouTubeFeast
 				
 				Thread.Sleep(60000);
 			}
+		}
+		
+		public static void DisplayProgress(double percentage)
+		{
+			Int32 left = Console.CursorLeft;
+			Int32 top = Console.CursorTop;
+			
+			Console.Write (percentage+"%");
+			Console.SetCursorPosition(left,top);
 		}
 	}
 }
