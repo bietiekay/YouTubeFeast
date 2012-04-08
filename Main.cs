@@ -75,7 +75,10 @@ namespace YouTubeFeast
                                         Console.Write("\t\tDownloading: " + ShortenString.LimitCharacters(video.Title, 40) + "...");
 										var videoDownloader = new VideoDownloader(video, filename);
 
-										videoDownloader.ProgressChanged += (sender, args) => DisplayProgress(args.ProgressPercentage);
+                                        Int32 left = Console.CursorLeft;
+                                        Int32 top = Console.CursorTop;
+
+										videoDownloader.ProgressChanged += (sender, args) => DisplayProgress(left,top,args.ProgressPercentage);
 										
 										videoDownloader.Execute();
                                         Console.WriteLine("done    ");
@@ -90,13 +93,10 @@ namespace YouTubeFeast
 			}
 		}
 		
-		public static void DisplayProgress(double percentage)
+		public static void DisplayProgress(Int32 left, Int32 top, double percentage)
 		{
-			Int32 left = Console.CursorLeft;
-			Int32 top = Console.CursorTop;
-			
-			Console.Write (percentage+"%");
-			Console.SetCursorPosition(left,top);
+            Console.SetCursorPosition(left, top);
+			Console.Write (Convert.ToInt32(percentage)+"%");
 		}
 	}
 }
