@@ -45,13 +45,14 @@ namespace YouTubeFeast
 							// on the page
 							
 							foreach (String url in DownloadURLs)
-							{
-								// get all the available video formats for this one...
-								IEnumerable<VideoInfo> videoInfos = DownloadUrlResolver.GetDownloadUrls(url);
-								
+							{								
 								VideoInfo video = null;
+                                IEnumerable<VideoInfo> videoInfos = null;
                                 try
                                 {
+                                    // get all the available video formats for this one...
+                                    videoInfos = DownloadUrlResolver.GetDownloadUrls(url);
+
 								    video = videoInfos.First(info => info.VideoFormat == job.DownloadVideoFormat);
                                 }
                                 catch(Exception)
