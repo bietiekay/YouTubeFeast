@@ -14,6 +14,7 @@ namespace YouTubeFeast
 		public Int32 Interval;
 		public DateTime LastDownload;
 		public bool SearchBottom;
+        public String SearchKeyword;
     }
 
     public static class YouTubeFeastConfiguration
@@ -62,12 +63,22 @@ namespace YouTubeFeast
 								case "ADDBOTTOM":
 									NewJob.SearchBottom = true;
 									break;
+                                case "ADDTOP":
+                                    NewJob.SearchBottom = false;
+                                    break;
 								default:
 									NewJob.SearchBottom = false;
 									break;
 							}
 							NewJob.Interval = Convert.ToInt32(TokenizedLine[3])/**60*60*1000*/;
-							
+
+                            if (TokenizedLine.Length == 6)
+                            {
+                                NewJob.SearchKeyword = TokenizedLine[5];
+                            }
+                            else
+                                NewJob.SearchKeyword = "";
+
 							DownloadJobs.Add(NewJob);
 							Console.WriteLine("Added a new Job ("+NewJob.ChannelURL+")");
 						}

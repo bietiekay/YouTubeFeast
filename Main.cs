@@ -46,6 +46,7 @@ namespace YouTubeFeast
 							
 							if (job.SearchBottom)
 							{
+                                //Console.WriteLine("reversed: " + job.ChannelURL);
 								DownloadURLs.Reverse();
 							}
 							
@@ -57,7 +58,6 @@ namespace YouTubeFeast
                                 {
                                     // get all the available video formats for this one...
                                     videoInfos = DownloadUrlResolver.GetDownloadUrls(url);
-
 								    video = videoInfos.First(info => info.VideoFormat == job.DownloadVideoFormat);
                                 }
                                 catch(Exception)
@@ -69,7 +69,16 @@ namespace YouTubeFeast
 								if (video != null)
 								{
 									String filename = Path.Combine(job.ChannelDownloadDirectory, video.Title + video.VideoExtension);
-									
+                                    
+                                    // check if there is a keyword present we should look for when choosing to-be-downloaded files
+                                    if (job.SearchKeyword != "")
+                                    {
+                                        // if we do not find it in the name, skip
+                                        //Console.WriteLine("checking: " + video.Title);
+                                        if (!video.Title.Contains(job.SearchKeyword))
+                                            continue;
+                                    }
+
 									if (File.Exists(filename))
 									{
 										//Console.WriteLine("File: "+filename+" already exists - we stop this channel job now.");
