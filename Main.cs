@@ -62,8 +62,11 @@ namespace YouTubeFeast
                                 }
                                 catch(Exception)
                                 {
-                                    Console.WriteLine("\t\tError: Video with the desired resolution is not available.");
+                                    //videoInfos = DownloadUrlResolver.GetDownloadUrls(url);
                                     //video = videoInfos.First(info => info.VideoFormat == VideoFormat.Standard360);
+                                    Console.WriteLine("Error: Video with the desired resolution is not available ("+job.ChannelDownloadDirectory+")");
+                                    //video = videoInfos.First(info => info.VideoFormat == VideoFormat.Standard360);
+                                    continue;
                                 }
 								
 								if (video != null)
@@ -87,7 +90,7 @@ namespace YouTubeFeast
 									}
 									else
 									{
-                                        Console.Write("\t\tDownloading: " + ShortenString.LimitCharacters(video.Title, 40) + "...");
+                                        Console.Write("Downloading: " + ShortenString.LimitCharacters(video.Title, 40) + "...");
 										var videoDownloader = new VideoDownloader(video, filename);
 
                                         Int32 left = Console.CursorLeft;
@@ -100,7 +103,7 @@ namespace YouTubeFeast
                                         }
                                         catch(Exception e)
                                         {
-                                            Console.WriteLine("\t\tError: "+ShortenString.LimitCharacters(e.Message,40));
+                                            Console.WriteLine("Error: "+ShortenString.LimitCharacters(e.Message,40));
                                             //video = videoInfos.First(info => info.VideoFormat == VideoFormat.Standard360);
                                         }
                                         Console.WriteLine("done    ");
