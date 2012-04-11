@@ -31,7 +31,7 @@ namespace YouTubeFeast
 					TimeSpan theInterval = new TimeSpan(job.Interval,0,0);
 					if ( SinceLastRun  >= theInterval )
 					{
-						Console.WriteLine("Updating: "+job.ChannelURL);
+						//Console.WriteLine("Updating: "+job.ChannelURL);
 						// we should download something... or at least look for new stuff
 						List<String> DownloadURLs = YoutubeDownload.GenerateDownloadURLsFromChannel(job.ChannelURL);
 						job.LastDownload = DateTime.Now;
@@ -43,6 +43,11 @@ namespace YouTubeFeast
 							// oh there is a policy: the first file that already exists leads to the abortion of this particular channel download
 							// that's because this tool expects the new files to appear first on the channel page and the old ones to be listed later
 							// on the page
+							
+							if (job.SearchBottom)
+							{
+								DownloadURLs.Reverse();
+							}
 							
 							foreach (String url in DownloadURLs)
 							{								
@@ -68,7 +73,7 @@ namespace YouTubeFeast
 									if (File.Exists(filename))
 									{
 										//Console.WriteLine("File: "+filename+" already exists - we stop this channel job now.");
-										Console.WriteLine("\t\tNotice: We are finished with this channel.");
+										//Console.WriteLine("\t\tNotice: We are finished with this channel.");
 										break;
 									}
 									else

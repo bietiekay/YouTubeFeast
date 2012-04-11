@@ -13,6 +13,7 @@ namespace YouTubeFeast
 		public VideoFormat DownloadVideoFormat;
 		public Int32 Interval;
 		public DateTime LastDownload;
+		public bool SearchBottom;
     }
 
     public static class YouTubeFeastConfiguration
@@ -37,7 +38,7 @@ namespace YouTubeFeast
 						String[] TokenizedLine = LineElement.Split(new char[1] { '\t' });
 						ChannelJob NewJob = new ChannelJob();
 						
-						if (TokenizedLine.Length == 4)
+						if (TokenizedLine.Length >= 5)
 						{
 							NewJob.ChannelURL = TokenizedLine[0];
 							NewJob.ChannelDownloadDirectory = TokenizedLine[2];
@@ -55,6 +56,15 @@ namespace YouTubeFeast
 							    default:
 							        NewJob.DownloadVideoFormat = VideoFormat.Standard360;
 							        break;
+							}
+							switch (TokenizedLine[4].ToUpper())
+							{
+								case "ADDBOTTOM":
+									NewJob.SearchBottom = true;
+									break;
+								default:
+									NewJob.SearchBottom = false;
+									break;
 							}
 							NewJob.Interval = Convert.ToInt32(TokenizedLine[3])/**60*60*1000*/;
 							
