@@ -64,7 +64,7 @@ namespace YouTubeFeast
                                 {
                                     //videoInfos = DownloadUrlResolver.GetDownloadUrls(url);
                                     //video = videoInfos.First(info => info.VideoFormat == VideoFormat.Standard360);
-                                    Console.WriteLine("Error: Video with the desired resolution is not available ("+job.ChannelDownloadDirectory+")");
+                                    //Console.WriteLine("Error: Video with the desired resolution is not available ("+job.ChannelDownloadDirectory+")");
                                     //video = videoInfos.First(info => info.VideoFormat == VideoFormat.Standard360);
                                     continue;
                                 }
@@ -100,6 +100,13 @@ namespace YouTubeFeast
 										try
                                         {
 										    videoDownloader.Execute();
+                                            FileInfo f2 = new FileInfo(filename);
+                                            long s2 = f2.Length;
+                                            if (s2 == 0)
+                                            {
+                                                File.Delete(filename);
+                                                Console.WriteLine("zeroed...");
+                                            }
                                         }
                                         catch(Exception e)
                                         {
