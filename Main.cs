@@ -11,16 +11,21 @@ namespace YouTubeFeast
 	{
 		public static void Main (string[] args2)
 		{
-			Console.WriteLine("YouTubeFeast version "+System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString());
-			Console.WriteLine("(C) Daniel Kirstenpfad 2012 - http://www.technology-ninja.com");
-			Console.WriteLine();
+			ConsoleOutputLogger.verbose = true;
+			ConsoleOutputLogger.writeLogfile = false;
+
+
+			ConsoleOutputLogger.WriteLine("YouTubeFeast version "+System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString());
+			ConsoleOutputLogger.WriteLine("(C) Daniel Kirstenpfad 2012 - http://www.technology-ninja.com");
+			ConsoleOutputLogger.WriteLine("");
 			
 			YouTubeFeastConfiguration.ReadConfiguration("YouTubeFeast.configuration");
 			
-			Console.WriteLine();
-			Console.WriteLine("to quit please use control-c.");
-			Console.WriteLine();
-			
+			ConsoleOutputLogger.WriteLine("");
+			ConsoleOutputLogger.WriteLine("to quit please use control-c.");
+			ConsoleOutputLogger.WriteLine("");
+			ConsoleOutputLogger.writeLogfile = true;
+
 			while (true)
 			{
 				// we have to decide if there is a job we need to work on
@@ -90,7 +95,7 @@ namespace YouTubeFeast
 									}
 									else
 									{
-                                        Console.Write("Downloading: " + ShortenString.LimitCharacters(video.Title, 40) + "...");
+                                        ConsoleOutputLogger.WriteLine("Downloading: " + ShortenString.LimitCharacters(video.Title, 40) + "...");
 										var videoDownloader = new VideoDownloader(video, filename);
 
                                         Int32 left = Console.CursorLeft;
@@ -110,9 +115,40 @@ namespace YouTubeFeast
                                         }
                                         catch(Exception e)
                                         {
-                                            Console.WriteLine("Error: "+ShortenString.LimitCharacters(e.Message,40));
+                                            ConsoleOutputLogger.WriteLine("Error: "+ShortenString.LimitCharacters(e.Message,40));
                                             //video = videoInfos.First(info => info.VideoFormat == VideoFormat.Standard360);
                                         }
+
+										// now checking if we already downloaded a file with the same content but different name earlier
+										if (File.Exists(filename))
+										{
+											String justdownloadedMD5 = job.HashCache.CalculateMD5Sum(filename);
+
+											if (job.HashCache.HashCodeExists(justdownloadedMD5))
+											{
+												// we've seen this file earlier...
+												String OldName = job.HashCache.ReplaceFilenameInCache(justdownloadedMD5,video.Title+video.VideoExtension);
+
+												String OldFilePath = Path.Combine(job.ChannelDownloadDirectory, OldName);
+
+												if (File.Exists(OldFilePath))
+												{
+													try
+													{
+														ConsoleOutputLogger.WriteLine("Found a duplicate: "+OldName+" -> "+video.Title+video.VideoExtension);
+														File.Delete(OldFilePath);
+													}
+													catch(Exception)
+													{
+													}
+												}
+											}
+											else
+											{
+												// we've never seen this file
+												job.HashCache.AddToCache(justdownloadedMD5,video.Title + video.VideoExtension);
+											}
+										}
                                         Console.WriteLine("done    ");
 									}
 								}

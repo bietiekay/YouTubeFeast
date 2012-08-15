@@ -15,6 +15,7 @@ namespace YouTubeFeast
 		public DateTime LastDownload;
 		public bool SearchBottom;
         public String SearchKeyword;
+		public HashingAndCaching HashCache;
     }
 
     public static class YouTubeFeastConfiguration
@@ -79,8 +80,10 @@ namespace YouTubeFeast
                             else
                                 NewJob.SearchKeyword = "";
 
+							NewJob.HashCache = new HashingAndCaching(NewJob.ChannelDownloadDirectory);
+
 							DownloadJobs.Add(NewJob);
-							Console.WriteLine("Added a new Job ("+NewJob.ChannelURL+")");
+							ConsoleOutputLogger.WriteLine("Added a new Job ("+NewJob.ChannelURL+")");
 						}
 						else
 							throw (new Exception("configuration file - error in line "+LineNumber));

@@ -2,12 +2,21 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Main.cs">
     <Files>
-      <File FileName="Main.cs" Line="49" Column="9" />
-      <File FileName="download/download.cs" Line="21" Column="13" />
-      <File FileName="ShortenString.cs" Line="20" Column="4" />
-      <File FileName="AssemblyInfo.cs" Line="1" Column="1" />
-      <File FileName="configuration/configuration.cs" Line="62" Column="24" />
+      <File FileName="Main.cs" Line="8" Column="23" />
+      <File FileName="HashingAndCaching.cs" Line="65" Column="16" />
+      <File FileName="ConsoleOutputLogger.cs" Line="59" Column="60" />
+      <File FileName="configuration/configuration.cs" Line="86" Column="27" />
     </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State expanded="True">
+          <Node name="YouTubeFeast" expanded="True">
+            <Node name="configuration" expanded="True" />
+            <Node name="Main.cs" selected="True" />
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />

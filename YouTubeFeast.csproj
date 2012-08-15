@@ -46,6 +46,8 @@
     <Compile Include="configuration\configuration.cs" />
     <Compile Include="download\download.cs" />
     <Compile Include="ShortenString.cs" />
+    <Compile Include="HashingAndCaching.cs" />
+    <Compile Include="ConsoleOutputLogger.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -61,9 +63,11 @@
   <ItemGroup>
     <None Include="license" />
     <None Include="readme" />
-    <None Include="YouTubeFeast.configuration">
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="YouTubeFeast.configuration">
       <Gettext-ScanForTranslations>false</Gettext-ScanForTranslations>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    </Content>
   </ItemGroup>
 </Project>

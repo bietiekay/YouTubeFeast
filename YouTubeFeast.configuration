@@ -8,5 +8,4 @@
 # <url>	<resolution>	<downloadpath>	<intervallinhours>	<addtop/addbottom>	[search keyword]
 # every part is separated by a tab
 #			
-http://www.youtube.com/user/AmrasLP/videos?query=skyrim	720p	/Volumes/Serien2/Lets Play/Lets Play Skyrim	4 Skyrim
-http://www.youtube.com/user/TheWhiskyStore/videos	720p	/Volumes/Serien2/The Whisky Store	3
+https://www.youtube.com/user/armaniplayer1989/videos	360p	/Users/bietiekay/Desktop/test/	1	addtop
