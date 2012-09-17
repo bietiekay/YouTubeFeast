@@ -10,7 +10,7 @@ namespace YouTubeFeast
     {
         public String ChannelURL;
 		public String ChannelDownloadDirectory;
-		public VideoFormat DownloadVideoFormat;
+		public Int32 DownloadVideoFormat;
 		public Int32 Interval;
 		public DateTime LastDownload;
 		public bool SearchBottom;
@@ -47,16 +47,16 @@ namespace YouTubeFeast
 							switch (TokenizedLine[1].ToUpper())
 							{
 							    case "360P": 
-							        NewJob.DownloadVideoFormat = VideoFormat.Standard360;
+							        NewJob.DownloadVideoFormat = 360;
 							        break;
 							    case "720P":
-							        NewJob.DownloadVideoFormat = VideoFormat.HighDefinition720;
+							        NewJob.DownloadVideoFormat = 720;
 							        break;
 								case "1080P":
-									NewJob.DownloadVideoFormat = VideoFormat.HighDefinition1080;
+									NewJob.DownloadVideoFormat = 1080;
 									break;
 							    default:
-							        NewJob.DownloadVideoFormat = VideoFormat.Standard360;
+							        NewJob.DownloadVideoFormat = 360;
 							        break;
 							}
 							switch (TokenizedLine[4].ToUpper())

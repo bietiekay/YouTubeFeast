@@ -63,10 +63,12 @@ namespace YouTubeFeast
                                 {
                                     // get all the available video formats for this one...
                                     videoInfos = DownloadUrlResolver.GetDownloadUrls(url);
-								    video = videoInfos.First(info => info.VideoFormat == job.DownloadVideoFormat);
+								    video = videoInfos.First(info => ((info.Resolution == job.DownloadVideoFormat) && (info.VideoType == VideoType.Mp4)));
                                 }
-                                catch(Exception)
+                                catch(Exception e)
                                 {
+									Console.WriteLine(e.Message);
+									//Console.WriteLine(e.StackTrace);
                                     //videoInfos = DownloadUrlResolver.GetDownloadUrls(url);
                                     //video = videoInfos.First(info => info.VideoFormat == VideoFormat.Standard360);
                                     //Console.WriteLine("Error: Video with the desired resolution is not available ("+job.ChannelDownloadDirectory+")");
@@ -140,6 +142,7 @@ namespace YouTubeFeast
 													}
 													catch(Exception)
 													{
+
 													}
 												}
 											}
