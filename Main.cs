@@ -16,6 +16,7 @@ namespace YouTubeFeast
 
 
 			ConsoleOutputLogger.WriteLine("YouTubeFeast version "+System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString());
+			ConsoleOutputLogger.WriteLine("YouTubeExtractor library created by flagbug (https://github.com/flagbug/YoutubeExtractor/)");
 			ConsoleOutputLogger.WriteLine("(C) Daniel Kirstenpfad 2012 - http://www.technology-ninja.com");
 			ConsoleOutputLogger.WriteLine("");
 			
