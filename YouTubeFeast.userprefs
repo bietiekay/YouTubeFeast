@@ -1,18 +1,18 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Main.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="configuration/configuration.cs">
     <Files>
-      <File FileName="Main.cs" Line="8" Column="23" />
-      <File FileName="HashingAndCaching.cs" Line="65" Column="16" />
-      <File FileName="ConsoleOutputLogger.cs" Line="59" Column="60" />
-      <File FileName="configuration/configuration.cs" Line="86" Column="27" />
+      <File FileName="configuration/configuration.cs" Line="59" Column="45" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
+          <Node name="ExampleApplication" expanded="True" />
+          <Node name="YoutubeExtractor" expanded="True" />
           <Node name="YouTubeFeast" expanded="True">
-            <Node name="configuration" expanded="True" />
-            <Node name="Main.cs" selected="True" />
+            <Node name="configuration" expanded="True">
+              <Node name="configuration.cs" selected="True" />
+            </Node>
           </Node>
         </State>
       </Pad>
