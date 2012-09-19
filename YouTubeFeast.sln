@@ -27,6 +27,6 @@ Global
 		{ECDC127F-8DEF-4F99-8300-72C13597339D}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = ..\YoutubeExtractor\YoutubeExtractor\ExampleApplication\ExampleApplication.csproj
+		StartupItem = YouTubeFeast.csproj
 	EndGlobalSection
 EndGlobal
