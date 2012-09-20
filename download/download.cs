@@ -69,7 +69,7 @@ namespace YouTubeFeast
                     }
 				}
 			}
-			//Console.WriteLine("I have found a total of "+Output.Count+" movies in that channel");
+			//Console.WriteLine("I have found a total of "+Output.Count+" movies in "+ChannelURL);
 			return Output;
 		}
 		#endregion

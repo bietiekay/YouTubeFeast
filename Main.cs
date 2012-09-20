@@ -68,7 +68,7 @@ namespace YouTubeFeast
                                 }
                                 catch(Exception e)
                                 {
-									Console.WriteLine(e.Message);
+									//Console.WriteLine(e.Message);
 									//Console.WriteLine(e.StackTrace);
                                     //videoInfos = DownloadUrlResolver.GetDownloadUrls(url);
                                     //video = videoInfos.First(info => info.VideoFormat == VideoFormat.Standard360);
