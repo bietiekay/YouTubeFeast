@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Net;
 using System.Threading;
 
@@ -14,6 +15,7 @@ namespace YoutubeExtractor
         /// </summary>
         /// <param name="video">The video to download.</param>
         /// <param name="savePath">The path to save the video.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="video"/> or <paramref name="savePath"/> is <c>null</c>.</exception>
         public VideoDownloader(VideoInfo video, string savePath)
             : base(video, savePath)
         { }
@@ -21,6 +23,8 @@ namespace YoutubeExtractor
         /// <summary>
         /// Starts the video download.
         /// </summary>
+        /// <exception cref="IOException">The video file could not be saved.</exception>
+        /// <exception cref="WebException">An error occured while downloading the video.</exception>
         public override void Execute()
         {
             // We need a handle to keep the method synchronously
@@ -28,7 +32,17 @@ namespace YoutubeExtractor
 
             var client = new WebClient();
 
-            client.DownloadFileCompleted += (sender, args) => handle.Set();
+            client.DownloadFileCompleted += (sender, args) =>
+            {
+                // DownloadFileAsync passes the exception to the DownloadFileCompleted event, if one occurs
+                if (args.Error != null)
+                {
+                    throw args.Error;
+                }
+
+                handle.Set();
+            };
+
             client.DownloadProgressChanged += (sender, args) =>
                 this.OnProgressChanged(new ProgressEventArgs(args.ProgressPercentage));
 
