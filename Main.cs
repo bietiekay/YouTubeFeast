@@ -79,6 +79,7 @@ namespace YouTubeFeast
 								
 								if (video != null)
 								{
+                                    String tmp_filename = "youtubefeast.tmp";
 									String filename = Path.Combine(job.ChannelDownloadDirectory, video.Title + video.VideoExtension);
                                     
                                     // check if there is a keyword present we should look for when choosing to-be-downloaded files
@@ -99,15 +100,17 @@ namespace YouTubeFeast
 									else
 									{
                                         ConsoleOutputLogger.WriteLine("Downloading: " + ShortenString.LimitCharacters(video.Title, 40) + "...");
-										var videoDownloader = new VideoDownloader(video, filename);
+										var videoDownloader = new VideoDownloader(video, tmp_filename);
 
                                         Int32 left = Console.CursorLeft;
                                         Int32 top = Console.CursorTop;
 
 										videoDownloader.ProgressChanged += (sender, args) => DisplayProgress(left,top,args.ProgressPercentage);
+
 										try
                                         {
 										    videoDownloader.Execute();
+                                            // if successfull, rename...
                                             FileInfo f2 = new FileInfo(filename);
                                             long s2 = f2.Length;
                                             if (s2 == 0)
@@ -115,6 +118,11 @@ namespace YouTubeFeast
                                                 File.Delete(filename);
                                                 Console.WriteLine("zeroed...");
                                             }
+                                            else
+                                            {
+                                                File.Move(tmp_filename, filename);
+                                            }
+
                                         }
                                         catch(Exception e)
                                         {
