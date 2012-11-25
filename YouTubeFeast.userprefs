@@ -1,20 +1,19 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Main.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="ShortenString.cs">
     <Files>
-      <File FileName="configuration/configuration.cs" Line="59" Column="45" />
-      <File FileName="../YoutubeExtractor/YoutubeExtractor/ExampleApplication/Program.cs" Line="29" Column="74" />
-      <File FileName="license" Line="1" Column="1" />
-      <File FileName="Main.cs" Line="16" Column="4" />
+      <File FileName="Main.cs" Line="42" Column="61" />
+      <File FileName="download/download.cs" Line="68" Column="27" />
+      <File FileName="ShortenString.cs" Line="10" Column="15" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Node name="ExampleApplication" expanded="True" />
-          <Node name="YoutubeExtractor" expanded="True" />
           <Node name="YouTubeFeast" expanded="True">
             <Node name="configuration" expanded="True" />
-            <Node name="Main.cs" selected="True" />
+            <Node name="download" expanded="True" />
+            <Node name="ShortenString.cs" selected="True" />
           </Node>
         </State>
       </Pad>

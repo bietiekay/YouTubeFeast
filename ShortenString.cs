@@ -6,6 +6,8 @@ namespace YouTubeFeast
 	{
 		public static string LimitCharacters(string text, int length) 
 		{
+			if (text == null)
+				return "";
 		    // If text in shorter or equal to length, just return it
 		    if (text.Length <= length) 
 			{
