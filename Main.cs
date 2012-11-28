@@ -79,7 +79,7 @@ namespace YouTubeFeast
 								
 								if (video != null)
 								{
-                                    String tmp_filename = "youtubefeast.tmp";
+                                    String tmp_filename = Path.Combine(job.ChannelDownloadDirectory,"youtubefeast.tmp");
 									String filename = Path.Combine(job.ChannelDownloadDirectory, video.Title + video.VideoExtension);
                                     
                                     // check if there is a keyword present we should look for when choosing to-be-downloaded files
