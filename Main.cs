@@ -111,7 +111,7 @@ namespace YouTubeFeast
                                         {
 										    videoDownloader.Execute();
                                             // if successfull, rename...
-                                            FileInfo f2 = new FileInfo(filename);
+                                            FileInfo f2 = new FileInfo(tmp_filename);
                                             long s2 = f2.Length;
                                             if (s2 == 0)
                                             {
@@ -120,6 +120,7 @@ namespace YouTubeFeast
                                             }
                                             else
                                             {
+                                                //Console.WriteLine("Moving: " + tmp_filename + " --> " + filename);
                                                 File.Move(tmp_filename, filename);
                                             }
 
