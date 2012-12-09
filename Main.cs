@@ -39,8 +39,17 @@ namespace YouTubeFeast
 					{
 						//Console.WriteLine("Updating: "+job.ChannelURL);
 						// we should download something... or at least look for new stuff
-						List<String> DownloadURLs = YoutubeDownload.GenerateDownloadURLsFromChannel(job.ChannelURL);
-						job.LastDownload = DateTime.Now;
+                        List<String> DownloadURLs = new List<string>();
+                        try
+                        {
+						    DownloadURLs = YoutubeDownload.GenerateDownloadURLsFromChannel(job.ChannelURL);
+						    job.LastDownload = DateTime.Now;
+                        }
+                        catch(Exception e)
+                        {
+                            ConsoleOutputLogger.WriteLine("Error in Channel " + job.ChannelURL);
+                            ConsoleOutputLogger.WriteLine(e.Message);
+                        }
 						
 						// it seems that we got a nice list here, now let's
 						if (DownloadURLs.Count > 0)
