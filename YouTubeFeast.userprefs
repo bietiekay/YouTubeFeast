@@ -9,11 +9,12 @@
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
-          <Node name="ExampleApplication" expanded="True" />
+          <Node name="YoutubeExtractor" expanded="True">
+            <Node name="AudioExtractionException.cs" selected="True" />
+          </Node>
           <Node name="YouTubeFeast" expanded="True">
             <Node name="configuration" expanded="True" />
             <Node name="download" expanded="True" />
-            <Node name="ShortenString.cs" selected="True" />
           </Node>
         </State>
       </Pad>
