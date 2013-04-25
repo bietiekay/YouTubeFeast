@@ -109,7 +109,11 @@ namespace YouTubeFeast
 									else
 									{
                                         ConsoleOutputLogger.WriteLine("Downloading: " + ShortenString.LimitCharacters(video.Title, 40) + "...");
-										var videoDownloader = new VideoDownloader(video, tmp_filename);
+
+                                        var videoDownloader = new VideoDownloader(video, tmp_filename);
+
+                                        if (Properties.Settings.Default.UseProxy)
+										    videoDownloader = new VideoDownloader(video, tmp_filename,Properties.Settings.Default.Proxy);
 
                                         Int32 left = Console.CursorLeft;
                                         Int32 top = Console.CursorTop;
