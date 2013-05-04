@@ -16,6 +16,8 @@ namespace YouTubeFeast
 		public bool SearchBottom;
         public String SearchKeyword;
 		public HashingAndCaching HashCache;
+        public bool Continue;
+        public Int32 MaximumChecks;
     }
 
     public static class YouTubeFeastConfiguration
@@ -40,7 +42,7 @@ namespace YouTubeFeast
 						String[] TokenizedLine = LineElement.Split(new char[1] { '\t' });
 						ChannelJob NewJob = new ChannelJob();
 						
-						if (TokenizedLine.Length >= 5)
+						if (TokenizedLine.Length >= 6)
 						{
 							NewJob.ChannelURL = TokenizedLine[0];
 							NewJob.ChannelDownloadDirectory = TokenizedLine[2];
@@ -59,7 +61,21 @@ namespace YouTubeFeast
 							        NewJob.DownloadVideoFormat = 360;
 							        break;
 							}
-							switch (TokenizedLine[4].ToUpper())
+                            switch (TokenizedLine[4].ToUpper())
+                            {
+                                case "CONTINUE":
+                                    NewJob.Continue = true;
+                                    break;
+                                case "BREAK":
+                                    NewJob.Continue = false;
+                                    break;
+                                default:
+                                    NewJob.Continue = false;
+                                    break;
+                            }
+                            NewJob.MaximumChecks = Convert.ToInt32(TokenizedLine[5])/**60*60*1000*/;
+
+							switch (TokenizedLine[6].ToUpper())
 							{
 								case "ADDBOTTOM":
 									NewJob.SearchBottom = true;
@@ -73,9 +89,9 @@ namespace YouTubeFeast
 							}
 							NewJob.Interval = Convert.ToInt32(TokenizedLine[3])/**60*60*1000*/;
 
-                            if (TokenizedLine.Length == 6)
+                            if (TokenizedLine.Length == 8)
                             {
-                                NewJob.SearchKeyword = TokenizedLine[5];
+                                NewJob.SearchKeyword = TokenizedLine[7];
                             }
                             else
                                 NewJob.SearchKeyword = "";

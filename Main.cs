@@ -32,12 +32,14 @@ namespace YouTubeFeast
 				// we have to decide if there is a job we need to work on
 				
 				foreach(ChannelJob job in YouTubeFeastConfiguration.DownloadJobs)
-				{					
+				{
+                    Int32 Counter = 0;
+
 					TimeSpan SinceLastRun = DateTime.Now - job.LastDownload;
 					TimeSpan theInterval = new TimeSpan(job.Interval,0,0);
 					if ( SinceLastRun  >= theInterval )
 					{
-						//Console.WriteLine("Updating: "+job.ChannelURL);
+						Console.WriteLine("Updating: "+job.ChannelDownloadDirectory);
 						// we should download something... or at least look for new stuff
                         List<String> DownloadURLs = new List<string>();
                         try
@@ -66,7 +68,15 @@ namespace YouTubeFeast
 							}
 							
 							foreach (String url in DownloadURLs)
-							{								
+							{
+                                if (job.Continue)
+                                {
+                                    if (Counter >= job.MaximumChecks)
+                                    {
+                                        Console.WriteLine("Maximum Downloads ("+job.MaximumChecks+") reached for this run for " + job.ChannelDownloadDirectory);
+                                        break;
+                                    }
+                                }
 								VideoInfo video = null;
                                 IEnumerable<VideoInfo> videoInfos = null;
                                 try
@@ -102,14 +112,22 @@ namespace YouTubeFeast
 
 									if (File.Exists(filename))
 									{
+                                        Counter++;
+
 										Console.WriteLine("File: "+filename+" already exists.");
 										//Console.WriteLine("\t\tNotice: We are finished with this channel.");
-										//break;
-                                        continue;
+                                        if (job.Continue)
+                                            continue;
+                                        else
+                                            break;
+                                        //break;
+                                        //continue;
 									}
 									else
 									{
-                                        ConsoleOutputLogger.WriteLine("Downloading: " + ShortenString.LimitCharacters(video.Title, 40) + "...");
+                                        Counter++;
+
+                                        ConsoleOutputLogger.WriteLine("Downloading: " + ShortenString.LimitCharacters(video.Title, 40) + " to "+job.ChannelDownloadDirectory);
 
                                         var videoDownloader = new VideoDownloader(video, tmp_filename);
 
