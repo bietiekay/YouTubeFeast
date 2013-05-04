@@ -72,7 +72,7 @@ namespace YouTubeFeast
                                 try
                                 {
                                     // get all the available video formats for this one...
-                                    videoInfos = DownloadUrlResolver.GetDownloadUrls(url);
+                                    videoInfos = DownloadUrlResolver.GetDownloadUrls(url,Properties.Settings.Default.Proxy);
 								    video = videoInfos.First(info => ((info.Resolution == job.DownloadVideoFormat) && (info.VideoType == VideoType.Mp4)));
                                 }
                                 catch(Exception e)
@@ -102,9 +102,10 @@ namespace YouTubeFeast
 
 									if (File.Exists(filename))
 									{
-										//Console.WriteLine("File: "+filename+" already exists - we stop this channel job now.");
+										Console.WriteLine("File: "+filename+" already exists.");
 										//Console.WriteLine("\t\tNotice: We are finished with this channel.");
-										break;
+										//break;
+                                        continue;
 									}
 									else
 									{
