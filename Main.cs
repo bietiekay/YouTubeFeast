@@ -9,6 +9,8 @@ namespace YouTubeFeast
 {
 	class MainClass
 	{
+        static double dl_percentage;
+
 		public static void Main (string[] args2)
 		{
 			ConsoleOutputLogger.verbose = true;
@@ -39,7 +41,7 @@ namespace YouTubeFeast
 					TimeSpan theInterval = new TimeSpan(job.Interval,0,0);
 					if ( SinceLastRun  >= theInterval )
 					{
-						Console.WriteLine("Updating: "+job.ChannelDownloadDirectory);
+						ConsoleOutputLogger.WriteLine("Updating: "+job.ChannelDownloadDirectory);
 						// we should download something... or at least look for new stuff
                         List<String> DownloadURLs = new List<string>();
                         try
@@ -73,7 +75,7 @@ namespace YouTubeFeast
                                 {
                                     if (Counter >= job.MaximumChecks)
                                     {
-                                        Console.WriteLine("Maximum Downloads ("+job.MaximumChecks+") reached for this run for " + job.ChannelDownloadDirectory);
+                                        ConsoleOutputLogger.WriteLine("Maximum Downloads (" + job.MaximumChecks + ") reached for this run for " + job.ChannelDownloadDirectory);
                                         break;
                                     }
                                 }
@@ -114,7 +116,7 @@ namespace YouTubeFeast
 									{
                                         Counter++;
 
-										Console.WriteLine("File: "+filename+" already exists.");
+                                        ConsoleOutputLogger.WriteLine("File: " + filename + " already exists.");
 										//Console.WriteLine("\t\tNotice: We are finished with this channel.");
                                         if (job.Continue)
                                             continue;
@@ -141,21 +143,30 @@ namespace YouTubeFeast
 
 										try
                                         {
+                                            dl_percentage = 0;
 										    videoDownloader.Execute();
-                                            // if successfull, rename...
-                                            FileInfo f2 = new FileInfo(tmp_filename);
-                                            long s2 = f2.Length;
-                                            if (s2 == 0)
+
+                                            if (dl_percentage <= 99)
                                             {
-                                                File.Delete(filename);
-                                                Console.WriteLine("zeroed...");
+                                                // file download did not complete...
+                                                ConsoleOutputLogger.WriteLine("File download not complete... aborting");
                                             }
                                             else
                                             {
-                                                //Console.WriteLine("Moving: " + tmp_filename + " --> " + filename);
-                                                File.Move(tmp_filename, filename);
+                                                // if successfull, rename...
+                                                FileInfo f2 = new FileInfo(tmp_filename);
+                                                long s2 = f2.Length;
+                                                if (s2 == 0)
+                                                {
+                                                    File.Delete(filename);
+                                                    ConsoleOutputLogger.WriteLine("zeroed...");
+                                                }
+                                                else
+                                                {
+                                                    //Console.WriteLine("Moving: " + tmp_filename + " --> " + filename);
+                                                    File.Move(tmp_filename, filename);
+                                                }
                                             }
-
                                         }
                                         catch(Exception e)
                                         {
@@ -179,8 +190,12 @@ namespace YouTubeFeast
 												{
 													try
 													{
-														ConsoleOutputLogger.WriteLine("Found a duplicate: "+OldName+" -> "+video.Title+video.VideoExtension);
-														File.Delete(OldFilePath);
+
+                                                        if (OldName != video.Title + video.VideoExtension)
+                                                        {
+                                                            ConsoleOutputLogger.WriteLine("Found a duplicate: " + OldName + " -> " + video.Title + video.VideoExtension);
+                                                            File.Delete(OldFilePath);
+                                                        }
 													}
 													catch(Exception)
 													{
@@ -199,9 +214,8 @@ namespace YouTubeFeast
 								}
 							}
 						}
-					}	
-				}
-				
+					}                    
+				}               
 				Thread.Sleep(60000);
 			}
 		}
@@ -210,6 +224,7 @@ namespace YouTubeFeast
 		{
             Console.SetCursorPosition(left, top);
 			Console.Write (Convert.ToInt32(percentage)+"%");
+            dl_percentage = percentage;
 		}
 	}
 }

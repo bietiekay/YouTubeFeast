@@ -5,12 +5,48 @@ using System.Text;
 
 namespace YouTubeFeast
 {
+    public class WebDownload : WebClient
+    {
+        private int _timeout;
+        /// <summary>
+        /// Time in milliseconds
+        /// </summary>
+        public int Timeout
+        {
+            get
+            {
+                return _timeout;
+            }
+            set
+            {
+                _timeout = value;
+            }
+        }
+
+        public WebDownload()
+        {
+            this._timeout = 60000;
+        }
+
+        public WebDownload(int timeout)
+        {
+            this._timeout = timeout;
+        }
+
+        protected override WebRequest GetWebRequest(Uri address)
+        {
+            var result = base.GetWebRequest(address);
+            result.Timeout = this._timeout;
+            return result;
+        }
+    }
+
 	public static class YoutubeDownload
 	{
 		#region Generate Download URLs from a Channel URL
 		public static List<String> GenerateDownloadURLsFromChannel(String ChannelURL)
 		{
-			WebClient myWebClient = new WebClient();
+            WebClient myWebClient = new WebDownload();
 			//Console.WriteLine("Downloading: " + ChannelURL);                        
 			// Download the Web resource and save it into a data buffer.
 			byte[] myDataBuffer;

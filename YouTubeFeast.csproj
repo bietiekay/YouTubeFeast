@@ -66,7 +66,9 @@
     <Compile Include="Main.cs" />
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="configuration\configuration.cs" />
-    <Compile Include="download\download.cs" />
+    <Compile Include="download\download.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
