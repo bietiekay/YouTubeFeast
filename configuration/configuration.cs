@@ -6,8 +6,15 @@ using YoutubeExtractor;
 
 namespace YouTubeFeast
 {
+    public enum VideoServices
+    {
+        YouTube,
+        Vimeo
+    };
+
     public class ChannelJob
     {
+        public VideoServices VideoService;
         public String ChannelURL;
 		public String ChannelDownloadDirectory;
 		public Int32 DownloadVideoFormat;
@@ -42,11 +49,16 @@ namespace YouTubeFeast
 						String[] TokenizedLine = LineElement.Split(new char[1] { '\t' });
 						ChannelJob NewJob = new ChannelJob();
 						
-						if (TokenizedLine.Length >= 6)
+						if (TokenizedLine.Length >= 7)
 						{
-							NewJob.ChannelURL = TokenizedLine[0];
-							NewJob.ChannelDownloadDirectory = TokenizedLine[2];
-							switch (TokenizedLine[1].ToUpper())
+                            if (TokenizedLine[0].ToUpper().StartsWith("Y"))
+                                NewJob.VideoService = VideoServices.YouTube;
+                            else
+                                NewJob.VideoService = VideoServices.Vimeo;
+
+							NewJob.ChannelURL = TokenizedLine[1];
+							NewJob.ChannelDownloadDirectory = TokenizedLine[3];
+							switch (TokenizedLine[2].ToUpper())
 							{
 							    case "360P": 
 							        NewJob.DownloadVideoFormat = 360;
@@ -61,7 +73,7 @@ namespace YouTubeFeast
 							        NewJob.DownloadVideoFormat = 360;
 							        break;
 							}
-                            switch (TokenizedLine[4].ToUpper())
+                            switch (TokenizedLine[5].ToUpper())
                             {
                                 case "CONTINUE":
                                     NewJob.Continue = true;
@@ -73,9 +85,9 @@ namespace YouTubeFeast
                                     NewJob.Continue = false;
                                     break;
                             }
-                            NewJob.MaximumChecks = Convert.ToInt32(TokenizedLine[5])/**60*60*1000*/;
+                            NewJob.MaximumChecks = Convert.ToInt32(TokenizedLine[6])/**60*60*1000*/;
 
-							switch (TokenizedLine[6].ToUpper())
+							switch (TokenizedLine[7].ToUpper())
 							{
 								case "ADDBOTTOM":
 									NewJob.SearchBottom = true;
@@ -87,11 +99,11 @@ namespace YouTubeFeast
 									NewJob.SearchBottom = false;
 									break;
 							}
-							NewJob.Interval = Convert.ToInt32(TokenizedLine[3])/**60*60*1000*/;
+							NewJob.Interval = Convert.ToInt32(TokenizedLine[4])/**60*60*1000*/;
 
-                            if (TokenizedLine.Length == 8)
+                            if (TokenizedLine.Length == 9)
                             {
-                                NewJob.SearchKeyword = TokenizedLine[7];
+                                NewJob.SearchKeyword = TokenizedLine[8];
                             }
                             else
                                 NewJob.SearchKeyword = "";

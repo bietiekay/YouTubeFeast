@@ -1,2 +1,9 @@
+.DS_Store
+/obj
 /bin
-
+/lib/YoutubeExtractor/.DS_Store
+/lib/YoutubeExtractor/YoutubeExtractor/.DS_Store
+/lib/Newtonsoft.Json/bin
+/lib/Newtonsoft.Json/obj
+/lib/YoutubeExtractor/YoutubeExtractor/YoutubeExtractor/bin
+/lib/YoutubeExtractor/YoutubeExtractor/YoutubeExtractor/obj

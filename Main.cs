@@ -4,12 +4,18 @@ using System.Collections.Generic;
 using YoutubeExtractor;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace YouTubeFeast
 {
 	class MainClass
 	{
         static double dl_percentage;
+
+        private static string RemoveSpecialCharacters(string str)
+        {
+            return Regex.Replace(str, "[^a-zA-Z0-9_]+", "_", RegexOptions.Compiled);
+        }
 
 		public static void Main (string[] args2)
 		{
@@ -19,7 +25,7 @@ namespace YouTubeFeast
 
 			ConsoleOutputLogger.WriteLine("YouTubeFeast version "+System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString());
 			ConsoleOutputLogger.WriteLine("YouTubeExtractor library created by flagbug (https://github.com/flagbug/YoutubeExtractor/)");
-			ConsoleOutputLogger.WriteLine("(C) Daniel Kirstenpfad 2012 - http://www.technology-ninja.com");
+			ConsoleOutputLogger.WriteLine("(C) Daniel Kirstenpfad 2012-2015 - http://www.technology-ninja.com");
 			ConsoleOutputLogger.WriteLine("");
 			
 			YouTubeFeastConfiguration.ReadConfiguration("YouTubeFeast.configuration");
@@ -82,9 +88,9 @@ namespace YouTubeFeast
 								VideoInfo video = null;
                                 IEnumerable<VideoInfo> videoInfos = null;
                                 try
-                                {
+                                {                 
                                     // get all the available video formats for this one...
-                                    videoInfos = DownloadUrlResolver.GetDownloadUrls(url,Properties.Settings.Default.Proxy);
+                                    videoInfos = DownloadUrlResolver.GetDownloadUrls(url,true);
 								    video = videoInfos.First(info => ((info.Resolution == job.DownloadVideoFormat) && (info.VideoType == VideoType.Mp4)));
                                 }
                                 catch(Exception e)
@@ -101,7 +107,7 @@ namespace YouTubeFeast
 								if (video != null)
 								{
                                     String tmp_filename = Path.Combine(job.ChannelDownloadDirectory,"youtubefeast.tmp");
-									String filename = Path.Combine(job.ChannelDownloadDirectory, video.Title + video.VideoExtension);
+									String filename = Path.Combine(job.ChannelDownloadDirectory, RemoveSpecialCharacters(video.Title) + video.VideoExtension);
                                     
                                     // check if there is a keyword present we should look for when choosing to-be-downloaded files
                                     if (job.SearchKeyword != "")
@@ -131,49 +137,88 @@ namespace YouTubeFeast
 
                                         ConsoleOutputLogger.WriteLine("Downloading: " + ShortenString.LimitCharacters(video.Title, 40) + " to "+job.ChannelDownloadDirectory);
 
-                                        var videoDownloader = new VideoDownloader(video, tmp_filename);
+										if (Properties.Settings.Default.UseProxy) {
+											var videoDownloaderProxy = new VideoDownloaderProxy (video, tmp_filename, Properties.Settings.Default.Proxy);
+											Int32 left = Console.CursorLeft;
+											Int32 top = Console.CursorTop;
+											videoDownloaderProxy.DownloadProgressChanged += (sender, args) => DisplayProgress (left, top, args.ProgressPercentage);
 
-                                        if (Properties.Settings.Default.UseProxy)
-										    videoDownloader = new VideoDownloader(video, tmp_filename,Properties.Settings.Default.Proxy);
+											try
+											{
+												dl_percentage = 0;
+												videoDownloaderProxy.Execute();
 
-                                        Int32 left = Console.CursorLeft;
-                                        Int32 top = Console.CursorTop;
+												if (dl_percentage <= 99)
+												{
+													// file download did not complete...
+													ConsoleOutputLogger.WriteLine("File download not complete... aborting");
+												}
+												else
+												{
+													// if successfull, rename...
+													FileInfo f2 = new FileInfo(tmp_filename);
+													long s2 = f2.Length;
+													if (s2 == 0)
+													{
+														File.Delete(filename);
+														ConsoleOutputLogger.WriteLine("zeroed...");
+													}
+													else
+													{
+														//Console.WriteLine("Moving: " + tmp_filename + " --> " + filename);
+														File.Move(tmp_filename, filename);
+													}
+												}
+											}
+											catch(Exception e)
+											{
+												ConsoleOutputLogger.WriteLine("Error: "+ShortenString.LimitCharacters(e.Message,40));
+												//video = videoInfos.First(info => info.VideoFormat == VideoFormat.Standard360);
+											}
 
-										videoDownloader.ProgressChanged += (sender, args) => DisplayProgress(left,top,args.ProgressPercentage);
 
-										try
-                                        {
-                                            dl_percentage = 0;
-										    videoDownloader.Execute();
+										} else {
+											var videoDownloader = new VideoDownloader (video, tmp_filename);
+											Int32 left = Console.CursorLeft;
+											Int32 top = Console.CursorTop;
 
-                                            if (dl_percentage <= 99)
-                                            {
-                                                // file download did not complete...
-                                                ConsoleOutputLogger.WriteLine("File download not complete... aborting");
-                                            }
-                                            else
-                                            {
-                                                // if successfull, rename...
-                                                FileInfo f2 = new FileInfo(tmp_filename);
-                                                long s2 = f2.Length;
-                                                if (s2 == 0)
-                                                {
-                                                    File.Delete(filename);
-                                                    ConsoleOutputLogger.WriteLine("zeroed...");
-                                                }
-                                                else
-                                                {
-                                                    //Console.WriteLine("Moving: " + tmp_filename + " --> " + filename);
-                                                    File.Move(tmp_filename, filename);
-                                                }
-                                            }
-                                        }
-                                        catch(Exception e)
-                                        {
-                                            ConsoleOutputLogger.WriteLine("Error: "+ShortenString.LimitCharacters(e.Message,40));
-                                            //video = videoInfos.First(info => info.VideoFormat == VideoFormat.Standard360);
-                                        }
+											videoDownloader.DownloadProgressChanged += (sender, args) => DisplayProgress (left, top, args.ProgressPercentage);
 
+											try
+											{
+												dl_percentage = 0;
+												videoDownloader.Execute();
+
+												if (dl_percentage <= 99)
+												{
+													// file download did not complete...
+													ConsoleOutputLogger.WriteLine("File download not complete... aborting");
+												}
+												else
+												{
+													// if successfull, rename...
+													FileInfo f2 = new FileInfo(tmp_filename);
+													long s2 = f2.Length;
+													if (s2 == 0)
+													{
+														File.Delete(filename);
+														ConsoleOutputLogger.WriteLine("zeroed...");
+													}
+													else
+													{
+														//Console.WriteLine("Moving: " + tmp_filename + " --> " + filename);
+														File.Move(tmp_filename, filename);
+													}
+												}
+											}
+											catch(Exception e)
+											{
+												ConsoleOutputLogger.WriteLine("Error: "+ShortenString.LimitCharacters(e.Message,40));
+												//video = videoInfos.First(info => info.VideoFormat == VideoFormat.Standard360);
+											}
+
+										}
+											
 										// now checking if we already downloaded a file with the same content but different name earlier
 										if (File.Exists(filename))
 										{
@@ -182,7 +227,7 @@ namespace YouTubeFeast
 											if (job.HashCache.HashCodeExists(justdownloadedMD5))
 											{
 												// we've seen this file earlier...
-												String OldName = job.HashCache.ReplaceFilenameInCache(justdownloadedMD5,video.Title+video.VideoExtension);
+                                                String OldName = job.HashCache.ReplaceFilenameInCache(justdownloadedMD5, RemoveSpecialCharacters(video.Title) + video.VideoExtension);
 
 												String OldFilePath = Path.Combine(job.ChannelDownloadDirectory, OldName);
 
@@ -193,7 +238,7 @@ namespace YouTubeFeast
 
                                                         if (OldName != video.Title + video.VideoExtension)
                                                         {
-                                                            ConsoleOutputLogger.WriteLine("Found a duplicate: " + OldName + " -> " + video.Title + video.VideoExtension);
+                                                            ConsoleOutputLogger.WriteLine("Found a duplicate: " + OldName + " -> " + RemoveSpecialCharacters(video.Title) + video.VideoExtension);
                                                             File.Delete(OldFilePath);
                                                         }
 													}
@@ -206,7 +251,7 @@ namespace YouTubeFeast
 											else
 											{
 												// we've never seen this file
-												job.HashCache.AddToCache(justdownloadedMD5,video.Title + video.VideoExtension);
+                                                job.HashCache.AddToCache(justdownloadedMD5, RemoveSpecialCharacters(video.Title) + video.VideoExtension);
 											}
 										}
                                         Console.WriteLine("done    ");

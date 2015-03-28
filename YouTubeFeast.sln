@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YouTubeFeast", "YouTubeFeas
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YoutubeExtractor", "lib\YoutubeExtractor\YoutubeExtractor\YoutubeExtractor\YoutubeExtractor.csproj", "{ECDC127F-8DEF-4F99-8300-72C13597339D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Newtonsoft.Json.Net40", "lib\Newtonsoft.Json\Newtonsoft.Json.Net40.csproj", "{A9AE40FF-1A21-414A-9FE7-3BE13644CC6D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -15,13 +17,14 @@ Global
 		{66913DA7-A88F-4F15-AE91-A5EE6627C928}.Debug|x86.Build.0 = Debug|x86
 		{66913DA7-A88F-4F15-AE91-A5EE6627C928}.Release|x86.ActiveCfg = Release|x86
 		{66913DA7-A88F-4F15-AE91-A5EE6627C928}.Release|x86.Build.0 = Release|x86
+		{A9AE40FF-1A21-414A-9FE7-3BE13644CC6D}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{A9AE40FF-1A21-414A-9FE7-3BE13644CC6D}.Debug|x86.Build.0 = Debug|Any CPU
+		{A9AE40FF-1A21-414A-9FE7-3BE13644CC6D}.Release|x86.ActiveCfg = Release|Any CPU
+		{A9AE40FF-1A21-414A-9FE7-3BE13644CC6D}.Release|x86.Build.0 = Release|Any CPU
 		{ECDC127F-8DEF-4F99-8300-72C13597339D}.Debug|x86.ActiveCfg = Debug|Any CPU
 		{ECDC127F-8DEF-4F99-8300-72C13597339D}.Debug|x86.Build.0 = Debug|Any CPU
 		{ECDC127F-8DEF-4F99-8300-72C13597339D}.Release|x86.ActiveCfg = Release|Any CPU
 		{ECDC127F-8DEF-4F99-8300-72C13597339D}.Release|x86.Build.0 = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = YouTubeFeast.csproj
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

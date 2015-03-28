@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="Proxy" Type="System.String" Scope="User">
-      <Value Profile="(Default)">www-proxy.t-online.de</Value>
+      <Value Profile="(Default)">http://femflawlessfs:3111</Value>
     </Setting>
     <Setting Name="UseProxy" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
