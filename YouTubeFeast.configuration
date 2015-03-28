@@ -8,4 +8,5 @@
 # <youtube or vimeo> <url>	<resolution>	<downloadpath>	<intervallinhours>	<addtop/addbottom>	[search keyword]
 # every part is separated by a tab
 #			
-Y	http://www.youtube.com/playlist?list=PL298B627617DC1FC5	720p	.	1	continue	2	addtop
+V	https://vimeo.com/bambergtv1/videos/rss	720p	.	1	continue	1	addtop
+#Y	http://www.youtube.com/playlist?list=PL298B627617DC1FC5	720p	.	1	continue	2	addtop

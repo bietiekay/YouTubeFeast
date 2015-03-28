@@ -1,0 +1,7 @@
+.DS_Store
+vimeo-download-library/bin/
+vimeo-download-library/obj/
+vimeo-downloader-sharp/obj/
+vimeo-downloader-sharp/bin/
+vimeo-download-library/Library/Newtonsoft.Json/bin/
+vimeo-download-library/Library/Newtonsoft.Json/obj/

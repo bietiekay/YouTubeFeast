@@ -1,0 +1,15 @@
+﻿<Properties StartupItem="vimeo-downloader-sharp/vimeo-downloader-sharp.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="vimeo-download-library/vimeo-download-library.cs">
+    <Files>
+      <File FileName="vimeo-download-library/vimeo-download-library.cs" Line="56" Column="5" />
+      <File FileName="vimeo-downloader-sharp/Program.cs" Line="36" Column="30" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="/Users/bietiekay/code/vimeo-downloader-sharp/vimeo-downloader-sharp/Program.cs" line="35" column="1" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

@@ -112,6 +112,10 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="lib\vimeo-downloader-sharp\vimeo-download-library\vimeo-download-library.csproj">
+      <Project>{E14C15E9-5D5C-48A1-B29B-C0D6D9A9E52E}</Project>
+      <Name>vimeo-download-library</Name>
+    </ProjectReference>
     <ProjectReference Include="lib\YoutubeExtractor\YoutubeExtractor\YoutubeExtractor\YoutubeExtractor.csproj">
       <Project>{ECDC127F-8DEF-4F99-8300-72C13597339D}</Project>
       <Name>YoutubeExtractor</Name>

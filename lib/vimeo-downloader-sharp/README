@@ -1,0 +1,8 @@
+Vimeo Downloader C# Port
+
+This small library and program helps to download Videos from Vimeo using C#.
+
+It should work with all current (2015+) versions of C# and .NET.
+
+
+Have fun!
