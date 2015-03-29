@@ -16,8 +16,8 @@ namespace YouTubeFeast
 
         private static string RemoveSpecialCharacters(string str)
         {
-            //return Regex.Replace(str, @"[^a-zA-Z0-9_\-äöüÄÜÖ#.!€$`'""& ]+", "_", RegexOptions.Compiled);
-            return str.Replace(':', '.').Replace('|', '_').Replace('/', '_').Replace('\\', '_').Replace('>', '_').Replace('<', '_');
+            return Regex.Replace(str, @"[^a-zA-Z0-9_\-äöüÄÜÖ#.!€$`'""& ]+", "_", RegexOptions.Compiled);
+            //return str.Replace(':', '.').Replace('|', '_').Replace('/', '_').Replace('\\', '_').Replace('>', '_').Replace('<', '_');
         }
 
 		public static void Main (string[] args2)
