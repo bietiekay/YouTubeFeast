@@ -16,7 +16,8 @@ namespace YouTubeFeast
 
         private static string RemoveSpecialCharacters(string str)
         {
-            return Regex.Replace(str, @"[^a-zA-Z0-9_\-äöüÄÜÖ#& ]+", "_", RegexOptions.Compiled);
+            //return Regex.Replace(str, @"[^a-zA-Z0-9_\-äöüÄÜÖ#.!€$`'""& ]+", "_", RegexOptions.Compiled);
+            return str.Replace(':', '.').Replace('|', '_').Replace('/', '_').Replace('\\', '_').Replace('>', '_').Replace('<', '_');
         }
 
 		public static void Main (string[] args2)
@@ -282,6 +283,7 @@ namespace YouTubeFeast
                             {
                                 #region Get Channel Information
                                 List<VimeoVideoChannel> Videos = VimeoDownloadLibrary.VimeoDownloadLibrary.ParseVimeoChannel(job.ChannelURL);
+                                job.LastDownload = DateTime.Now;
                                 #endregion
 
                                 // oh there is a policy: the first file that already exists leads to the abortion of this particular channel download
