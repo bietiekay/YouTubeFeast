@@ -16,8 +16,16 @@ namespace YouTubeFeast
 
         private static string RemoveSpecialCharacters(string str)
         {
-            return Regex.Replace(str, @"[^a-zA-Z0-9_\-äöüÄÜÖ#.!€$`'""& ]+", "_", RegexOptions.Compiled);
-            //return str.Replace(':', '.').Replace('|', '_').Replace('/', '_').Replace('\\', '_').Replace('>', '_').Replace('<', '_');
+            string Output = str;
+
+            //return Regex.Replace(str, @"[^a-zA-Z0-9_\-äöüÄÜÖ#.!€$`'""& ]+", "_", RegexOptions.Compiled);
+            foreach(char _notallowed in Path.GetInvalidFileNameChars())
+            {
+                Output = Output.Replace(_notallowed, '_');
+            }
+
+            //return str.Replace(':', '.').Replace('|', '_').Replace('/', '_').Replace('\\', '_').Replace('>', '_').Replace('<', '_').Replace('*', '_').Replace('?', '_').Replace('<', '_').Replace('<', '_');
+            return Output;
         }
 
 		public static void Main (string[] args2)
@@ -413,6 +421,7 @@ namespace YouTubeFeast
                                     }
                                     catch (Exception e)
                                     {
+                                        Console.WriteLine("Exception: " + e.Message);
                                         continue;
                                     }
                                 }
