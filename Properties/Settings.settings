@@ -3,10 +3,10 @@
   <Profiles />
   <Settings>
     <Setting Name="Proxy" Type="System.String" Scope="User">
-      <Value Profile="(Default)">http://femflawlessfs:3111</Value>
+      <Value Profile="(Default)">http://localhost</Value>
     </Setting>
     <Setting Name="UseProxy" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
+      <Value Profile="(Default)">False</Value>
     </Setting>
   </Settings>
 </SettingsFile>
