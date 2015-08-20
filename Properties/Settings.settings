@@ -8,5 +8,14 @@
     <Setting Name="UseProxy" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
+    <Setting Name="UseExternalYoutubeDL" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="YouTubeDLParams" Type="System.String" Scope="User">
+      <Value Profile="(Default)">299/137/mp4/bestvideo[height&lt;=?1080]+bestaudio/best</Value>
+    </Setting>
+    <Setting Name="YouTubeDLLocation" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\Users\Administrator\Desktop\YouTubeFeast\Source\YouTubeFeast\bin\Debug\youtube-dl.exe</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

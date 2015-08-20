@@ -6,6 +6,7 @@ using Newtonsoft.Json;
 using System.ServiceModel.Syndication;
 using System.Xml;
 using System.IO;
+using System.Text;
 
 namespace VimeoDownloadLibrary
 {
@@ -35,6 +36,20 @@ namespace VimeoDownloadLibrary
 
 	public static class VimeoDownloadLibrary
 	{
+        /*private static Stream GenerateStreamFromString(string s)
+        {
+            MemoryStream stream = new MemoryStream();
+            StreamWriter writer = new StreamWriter(stream);
+            writer.Write(s);
+            writer.Flush();
+            stream.Position = 0;
+            return stream;
+        }*/
+
+        private static MemoryStream GenerateStreamFromString(string value)
+        {
+            return new MemoryStream(Encoding.UTF8.GetBytes(value ?? ""));
+        }
 		/// <summary>
 		/// Parses the vimeo channel RSS URL and returns a list of DownloadURLs on that page
 		/// </summary>
@@ -44,16 +59,46 @@ namespace VimeoDownloadLibrary
 		{
 			// create the empty output list...
 			List<VimeoVideoChannel> Output = new List<VimeoVideoChannel> ();
+  
+            // bugfix: <?= PubSubHubBub::HUB_SUPERFEEDR ?>
+            var VimeoVideoPage = string.Empty;
+            using (var webClient = new System.Net.WebClient())
+            {
+                webClient.Encoding = Encoding.UTF8;
+                webClient.Headers.Add("user-agent", "Mozilla/5.0");
+                VimeoVideoPage = webClient.DownloadString(ChannelURL);
+            }
 
-			XmlReader reader = XmlReader.Create(ChannelURL);
-			SyndicationFeed feed = SyndicationFeed.Load(reader);
-			reader.Close();
-			foreach (SyndicationItem item in feed.Items)
-			{
-				if (item.Links.Count >= 0) {
-					Output.Add(new VimeoVideoChannel(item.Links[0].Uri.AbsolutePath.Remove(0,1),item.Title.Text));
-				}
-			}
+            using (Stream s = GenerateStreamFromString(VimeoVideoPage.Replace("<?= PubSubHubBub::HUB_SUPERFEEDR ?>","")))
+            {
+                XmlReader reader = XmlReader.Create(s);
+                SyndicationFeed feed = SyndicationFeed.Load(reader);
+                reader.Close();
+                foreach (SyndicationItem item in feed.Items)
+                {
+                    if (item.Links.Count >= 0)
+                    {
+                        Output.Add(new VimeoVideoChannel(item.Links[0].Uri.AbsolutePath.Remove(0, 1), item.Title.Text));
+                    }
+                }
+            }
+
+
+            /*
+            var VimeoVideoPage = string.Empty;
+            using (var webClient = new System.Net.WebClient())
+            {
+                webClient.Headers.Add("user-agent", "Mozilla/5.0");
+                VimeoVideoPage = webClient.DownloadString(ChannelURL);
+            }
+
+            Regex linkParser = new Regex(@"\b(?:https?://|www\.)\S+\b", RegexOptions.Compiled | RegexOptions.IgnoreCase);
+            foreach (Match m in linkParser.Matches(VimeoVideoPage))
+            {
+                VimeoVideoChannel item = new VimeoVideoChannel(m.ToString(), "");
+            }
+            */
+
 			return Output;
 		}
 
@@ -73,6 +118,7 @@ namespace VimeoDownloadLibrary
 			var VimeoVideoPage = string.Empty;
 			using (var webClient = new System.Net.WebClient())
 			{
+                webClient.Encoding = Encoding.UTF8;
 				webClient.Headers.Add ("user-agent", "Mozilla/5.0");
 				VimeoVideoPage = webClient.DownloadString(VimeoURL);
 			}

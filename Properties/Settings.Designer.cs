@@ -25,7 +25,7 @@ namespace YouTubeFeast.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://femflawlessfs:3111")]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost")]
         public string Proxy {
             get {
                 return ((string)(this["Proxy"]));
@@ -37,13 +37,50 @@ namespace YouTubeFeast.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool UseProxy {
             get {
                 return ((bool)(this["UseProxy"]));
             }
             set {
                 this["UseProxy"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool UseExternalYoutubeDL {
+            get {
+                return ((bool)(this["UseExternalYoutubeDL"]));
+            }
+            set {
+                this["UseExternalYoutubeDL"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("299/137/mp4/bestvideo[height<=?1080]+bestaudio/best")]
+        public string YouTubeDLParams {
+            get {
+                return ((string)(this["YouTubeDLParams"]));
+            }
+            set {
+                this["YouTubeDLParams"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Users\\Administrator\\Desktop\\YouTubeFeast\\Source\\YouTubeFeast\\bin\\Debug\\youtube" +
+            "-dl.exe")]
+        public string YouTubeDLLocation {
+            get {
+                return ((string)(this["YouTubeDLLocation"]));
+            }
+            set {
+                this["YouTubeDLLocation"] = value;
             }
         }
     }
