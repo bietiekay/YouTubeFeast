@@ -3,11 +3,13 @@ using System.Collections.Generic;
 
 namespace VimeoDownloadLibrary
 {
+
     public class Mobile
     {
         public int profile { get; set; }
         public string origin { get; set; }
         public string url { get; set; }
+        public string cdn { get; set; }
         public int height { get; set; }
         public int width { get; set; }
         public int id { get; set; }
@@ -20,6 +22,7 @@ namespace VimeoDownloadLibrary
         public int profile { get; set; }
         public string origin { get; set; }
         public string url { get; set; }
+        public string cdn { get; set; }
         public int height { get; set; }
         public int width { get; set; }
         public int id { get; set; }
@@ -32,6 +35,7 @@ namespace VimeoDownloadLibrary
         public int profile { get; set; }
         public string origin { get; set; }
         public string url { get; set; }
+        public string cdn { get; set; }
         public int height { get; set; }
         public int width { get; set; }
         public int id { get; set; }
@@ -49,8 +53,8 @@ namespace VimeoDownloadLibrary
     public class Hls
     {
         public string origin { get; set; }
-        public string cdn { get; set; }
         public string all { get; set; }
+        public string cdn { get; set; }
         public string hd { get; set; }
     }
 
@@ -65,17 +69,18 @@ namespace VimeoDownloadLibrary
     {
         public int scaling { get; set; }
         public double volume { get; set; }
-        public object hd { get; set; }
-        public object captions { get; set; }
+        public String hd { get; set; }
+        public string captions { get; set; }
     }
 
     public class Flags
     {
-        public object dnt { get; set; }
-        public int preload_video { get; set; }
+        public int dnt { get; set; }
+        public string preload_video { get; set; }
         public int plays { get; set; }
         public int webp { get; set; }
-        public bool conviva { get; set; }
+        public int conviva { get; set; }
+        public int flash_hls { get; set; }
         public int login { get; set; }
         public int partials { get; set; }
         public int blurr { get; set; }
@@ -92,10 +97,8 @@ namespace VimeoDownloadLibrary
         public string zeroclip_swf { get; set; }
         public string js { get; set; }
         public string proxy { get; set; }
-        public string conviva { get; set; }
         public string flideo { get; set; }
         public string moog { get; set; }
-        public string conviva_service { get; set; }
         public string comscore_js { get; set; }
         public string blurr { get; set; }
         public string vuid_js { get; set; }
@@ -108,18 +111,19 @@ namespace VimeoDownloadLibrary
     {
         public Files files { get; set; }
         public string ga_account { get; set; }
-        public int timestamp { get; set; }
         public int expires { get; set; }
+        public int timestamp { get; set; }
+        public string signature { get; set; }
+        public string currency { get; set; }
         public string session { get; set; }
         public Cookie cookie { get; set; }
         public string cookie_domain { get; set; }
         public object referrer { get; set; }
         public string comscore_id { get; set; }
-        public string conviva_account { get; set; }
         public Flags flags { get; set; }
         public Build build { get; set; }
         public Urls urls { get; set; }
-        public string signature { get; set; }
+        public string country { get; set; }
     }
 
     public class Owner
@@ -186,6 +190,7 @@ namespace VimeoDownloadLibrary
         public int scaling { get; set; }
         public int logo { get; set; }
         public BylineBadge byline_badge { get; set; }
+        public int collections { get; set; }
         public int info_on_pause { get; set; }
         public int watch_later { get; set; }
         public int portrait { get; set; }
@@ -232,5 +237,6 @@ namespace VimeoDownloadLibrary
         public string vimeo_url { get; set; }
         public User user { get; set; }
     }
+
 }
 
