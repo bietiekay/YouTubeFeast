@@ -160,7 +160,10 @@ namespace VimeoDownloadLibrary
 
 					VimeoVideoConfigurationRootObject VimeoVideoConfigurationRoot = JsonConvert.DeserializeObject<VimeoVideoConfigurationRootObject>(WebUtility.HtmlDecode (VimeoVideoConfiguration));
 
-					return new VideoDownloadURL (VimeoVideoConfigurationRoot.request.files.h264.hd.url, VimeoVideoConfigurationRoot.video.title);
+                    if (VimeoVideoConfigurationRoot.request.files.h264.hd != null)
+					    return new VideoDownloadURL (VimeoVideoConfigurationRoot.request.files.h264.hd.url, VimeoVideoConfigurationRoot.video.title);
+                    else
+                        return new VideoDownloadURL(VimeoVideoConfigurationRoot.request.files.h264.sd.url, VimeoVideoConfigurationRoot.video.title);
 				}
 			}
 			return null;
