@@ -38,8 +38,16 @@ namespace YouTubeFeast
 			ConsoleOutputLogger.WriteLine("YouTubeExtractor library created by flagbug (https://github.com/flagbug/YoutubeExtractor/)");
 			ConsoleOutputLogger.WriteLine("(C) Daniel Kirstenpfad 2012-2015 - http://www.technology-ninja.com");
 			ConsoleOutputLogger.WriteLine("");
-			
-			YouTubeFeastConfiguration.ReadConfiguration("YouTubeFeast.configuration");
+
+			String configuration = "YouTubeFeast.configuration";
+
+			if (args2.Length != 0)
+			{
+				configuration = args2[0];
+			}
+
+
+			YouTubeFeastConfiguration.ReadConfiguration(configuration);
 			
 			ConsoleOutputLogger.WriteLine("");
 			ConsoleOutputLogger.WriteLine("to quit please use control-c.");
@@ -441,8 +449,8 @@ namespace YouTubeFeast
 		
 		public static void DisplayProgress(Int32 left, Int32 top, double percentage)
 		{
-            Console.SetCursorPosition(left, top);
-			Console.Write (Convert.ToInt32(percentage)+"%");
+            //Console.SetCursorPosition(left, top);
+			//Console.Write (Convert.ToInt32(percentage)+"%");
             dl_percentage = percentage;
 		}
 	}
