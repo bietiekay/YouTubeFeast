@@ -18,7 +18,7 @@ namespace YouTubeFeast
         {
             string Output = str;
 
-            //return Regex.Replace(str, @"[^a-zA-Z0-9_\-äöüÄÜÖ#.!€$`'""& ]+", "_", RegexOptions.Compiled);
+            //return Regex.Replace(str, @"[^a-zA-Z0-9_\-äö?ÜÖ#.!?$`'""& ]+", "_", RegexOptions.Compiled);
             foreach(char _notallowed in Path.GetInvalidFileNameChars())
             {
                 Output = Output.Replace(_notallowed, '_');
@@ -108,8 +108,8 @@ namespace YouTubeFeast
                                     }
                                     catch (Exception e)
                                     {
-                                        //Console.WriteLine(e.Message);
-                                        //Console.WriteLine(e.StackTrace);
+                                        Console.WriteLine(e.Message);
+                                        Console.WriteLine(e.StackTrace);
                                         //videoInfos = DownloadUrlResolver.GetDownloadUrls(url);
                                         //video = videoInfos.First(info => info.VideoFormat == VideoFormat.Standard360);
                                         //Console.WriteLine("Error: Video with the desired resolution is not available ("+job.ChannelDownloadDirectory+")");
@@ -154,43 +154,43 @@ namespace YouTubeFeast
                                             #region Proxy
                                             if (Properties.Settings.Default.UseProxy)
                                             {
-                                                var videoDownloaderProxy = new VideoDownloaderProxy(video, tmp_filename, Properties.Settings.Default.Proxy);
-                                                Int32 left = Console.CursorLeft;
-                                                Int32 top = Console.CursorTop;
-                                                videoDownloaderProxy.DownloadProgressChanged += (sender, args) => DisplayProgress(left, top, args.ProgressPercentage);
+                                                //var videoDownloaderProxy = new VideoDownloaderProxy(video, tmp_filename, Properties.Settings.Default.Proxy);
+                                                //Int32 left = Console.CursorLeft;
+                                                //Int32 top = Console.CursorTop;
+                                                //videoDownloaderProxy.DownloadProgressChanged += (sender, args) => DisplayProgress(left, top, args.ProgressPercentage);
 
-                                                try
-                                                {
-                                                    dl_percentage = 0;
-                                                    videoDownloaderProxy.Execute();
+                                                //try
+                                                //{
+                                                //    dl_percentage = 0;
+                                                //    videoDownloaderProxy.Execute();
 
-                                                    if (dl_percentage <= 99)
-                                                    {
-                                                        // file download did not complete...
-                                                        ConsoleOutputLogger.WriteLine("File download not complete... aborting");
-                                                    }
-                                                    else
-                                                    {
-                                                        // if successfull, rename...
-                                                        FileInfo f2 = new FileInfo(tmp_filename);
-                                                        long s2 = f2.Length;
-                                                        if (s2 == 0)
-                                                        {
-                                                            File.Delete(filename);
-                                                            ConsoleOutputLogger.WriteLine("zeroed...");
-                                                        }
-                                                        else
-                                                        {
-                                                            //Console.WriteLine("Moving: " + tmp_filename + " --> " + filename);
-                                                            File.Move(tmp_filename, filename);
-                                                        }
-                                                    }
-                                                }
-                                                catch (Exception e)
-                                                {
-                                                    ConsoleOutputLogger.WriteLine("Error: " + ShortenString.LimitCharacters(e.Message, 40));
-                                                    //video = videoInfos.First(info => info.VideoFormat == VideoFormat.Standard360);
-                                                }
+                                                //    if (dl_percentage <= 99)
+                                                //    {
+                                                //        // file download did not complete...
+                                                //        ConsoleOutputLogger.WriteLine("File download not complete... aborting");
+                                                //    }
+                                                //    else
+                                                //    {
+                                                //        // if successfull, rename...
+                                                //        FileInfo f2 = new FileInfo(tmp_filename);
+                                                //        long s2 = f2.Length;
+                                                //        if (s2 == 0)
+                                                //        {
+                                                //            File.Delete(filename);
+                                                //            ConsoleOutputLogger.WriteLine("zeroed...");
+                                                //        }
+                                                //        else
+                                                //        {
+                                                //            //Console.WriteLine("Moving: " + tmp_filename + " --> " + filename);
+                                                //            File.Move(tmp_filename, filename);
+                                                //        }
+                                                //    }
+                                                //}
+                                                //catch (Exception e)
+                                                //{
+                                                //    ConsoleOutputLogger.WriteLine("Error: " + ShortenString.LimitCharacters(e.Message, 40));
+                                                //    //video = videoInfos.First(info => info.VideoFormat == VideoFormat.Standard360);
+                                                //}
 
                                             #endregion
                                             }

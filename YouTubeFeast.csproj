@@ -60,6 +60,12 @@
     <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Xml" />
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>packages\Newtonsoft.Json.6.0.6\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="YoutubeExtractor">
+      <HintPath>packages\YoutubeExtractor.0.10.11\lib\net35\YoutubeExtractor.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Main.cs" />
@@ -104,6 +110,7 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <None Include="readme" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="YouTubeFeast.configuration">
@@ -115,10 +122,6 @@
     <ProjectReference Include="lib\vimeo-downloader-sharp\vimeo-download-library\vimeo-download-library.csproj">
       <Project>{E14C15E9-5D5C-48A1-B29B-C0D6D9A9E52E}</Project>
       <Name>vimeo-download-library</Name>
-    </ProjectReference>
-    <ProjectReference Include="lib\YoutubeExtractor\YoutubeExtractor\YoutubeExtractor\YoutubeExtractor.csproj">
-      <Project>{ECDC127F-8DEF-4F99-8300-72C13597339D}</Project>
-      <Name>YoutubeExtractor</Name>
     </ProjectReference>
   </ItemGroup>
 </Project>
