@@ -44,7 +44,7 @@ namespace YouTubeFeast
         {
             if (Logfile == null)
             {
-                Logfile = new StreamWriter(DateTime.Now.ToShortDateString()+"-youtubefeast.log", true);
+				Logfile = new StreamWriter(DateTime.Now.Day+"-"+DateTime.Now.Month+"-"+DateTime.Now.Year+"-youtubefeast.log", true);
                 Logfile.AutoFlush = true;
             }
 			if (LastWrite == DateTime.MinValue)

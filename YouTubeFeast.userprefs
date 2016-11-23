@@ -1,15 +1,17 @@
-﻿<Properties StartupItem="YouTubeFeast.csproj">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="lib/YoutubeExtractor/YoutubeExtractor/YoutubeExtractor/DownloadUrlResolver.cs">
+﻿<Properties StartupConfiguration="{66913DA7-A88F-4F15-AE91-A5EE6627C928}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="ConsoleOutputLogger.cs">
     <Files>
       <File FileName="Main.cs" Line="1" Column="1" />
       <File FileName="download/download.cs" Line="1" Column="1" />
       <File FileName="ShortenString.cs" Line="10" Column="15" />
       <File FileName="lib/YoutubeExtractor/YoutubeExtractor/YoutubeExtractor/DownloadUrlResolver.cs" Line="6" Column="7" />
+      <File FileName="ConsoleOutputLogger.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.YouTubeFeast PreferredExecutionTarget="MonoDevelop.Default" />
 </Properties>
