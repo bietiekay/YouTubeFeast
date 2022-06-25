@@ -1,9 +1,9 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32526.322
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YouTubeFeast", "YouTubeFeast.csproj", "{66913DA7-A88F-4F15-AE91-A5EE6627C928}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Newtonsoft.Json.Net40", "lib\Newtonsoft.Json\Newtonsoft.Json.Net40.csproj", "{A9AE40FF-1A21-414A-9FE7-3BE13644CC6D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "vimeo-download-library", "lib\vimeo-downloader-sharp\vimeo-download-library\vimeo-download-library.csproj", "{E14C15E9-5D5C-48A1-B29B-C0D6D9A9E52E}"
 EndProject
@@ -27,18 +27,6 @@ Global
 		{66913DA7-A88F-4F15-AE91-A5EE6627C928}.Release|Mixed Platforms.Build.0 = Release|x86
 		{66913DA7-A88F-4F15-AE91-A5EE6627C928}.Release|x86.ActiveCfg = Release|x86
 		{66913DA7-A88F-4F15-AE91-A5EE6627C928}.Release|x86.Build.0 = Release|x86
-		{A9AE40FF-1A21-414A-9FE7-3BE13644CC6D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A9AE40FF-1A21-414A-9FE7-3BE13644CC6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A9AE40FF-1A21-414A-9FE7-3BE13644CC6D}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{A9AE40FF-1A21-414A-9FE7-3BE13644CC6D}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{A9AE40FF-1A21-414A-9FE7-3BE13644CC6D}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{A9AE40FF-1A21-414A-9FE7-3BE13644CC6D}.Debug|x86.Build.0 = Debug|Any CPU
-		{A9AE40FF-1A21-414A-9FE7-3BE13644CC6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A9AE40FF-1A21-414A-9FE7-3BE13644CC6D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A9AE40FF-1A21-414A-9FE7-3BE13644CC6D}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{A9AE40FF-1A21-414A-9FE7-3BE13644CC6D}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{A9AE40FF-1A21-414A-9FE7-3BE13644CC6D}.Release|x86.ActiveCfg = Release|Any CPU
-		{A9AE40FF-1A21-414A-9FE7-3BE13644CC6D}.Release|x86.Build.0 = Release|Any CPU
 		{E14C15E9-5D5C-48A1-B29B-C0D6D9A9E52E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E14C15E9-5D5C-48A1-B29B-C0D6D9A9E52E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E14C15E9-5D5C-48A1-B29B-C0D6D9A9E52E}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
@@ -52,5 +40,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1D97FE22-031B-4253-B670-8A2CE11FBB6E}
 	EndGlobalSection
 EndGlobal
